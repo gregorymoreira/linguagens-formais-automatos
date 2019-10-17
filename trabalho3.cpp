@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string entrada = "B:=C*A*C+B", saida = "<id>:=<exp>", aux = "";
+string entrada = "B:=C*(A*C+B)", saida = "<id>:=<exp>", aux = "";
 int indice = 0;
 
 void bt(int ind){
@@ -41,6 +41,11 @@ void bt(int ind){
         else if(c == '+'){
             saida.replace(saida.find("<exp>"), 5, "<id>+<exp>");
             cout << saida << endl;
+        }
+        else if(c == '('){
+            saida.replace(saida.find("<exp>"), 5, "(<exp>)");
+            cout << saida << endl;
+            bt(ind+1);
         }
         else if(c == ':' || c == '='){
             bt(ind+1);
